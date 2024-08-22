@@ -39,15 +39,12 @@
   - Firebase Functions
   - TypeScript
 
-## Instalación
+## Contribuciones
+Las contribuciones son bienvenidas. Por favor, abre un issue para discutir los cambios que deseas proponer.
 
-### Requisitos
+## Licencia
+Este proyecto está bajo la Licencia ISC.
 
-- Node.js >= 18.x
-- Yarn (opcional, pero recomendado)
+## Contacto
+David Soto - [linkedin](www.linkedin.com/in/david-soto-068716220)
 
-### Clonar el Repositorio
-
-```bash
-git clone https://github.com/tu-usuario/comparador-de-registros.git
-cd comparador-de-registros
