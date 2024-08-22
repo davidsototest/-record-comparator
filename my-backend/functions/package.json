@@ -1,0 +1,46 @@
+{
+  "name": "functions",
+  "version": "1.0.0",
+  "description": "Comparador de registros dentro de dos archivos",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon src/index.ts",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "npm run build && firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
+  "keywords": [],
+  "author": "David Soto",
+  "license": "ISC",
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.1.0",
+    "@types/nodemailer": "^6.4.15",
+    "axios": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "firebase-admin": "^12.1.0",
+    "firebase-functions": "^5.0.0",
+    "functions": "file:",
+    "nodemailer": "^6.9.14",
+    "nodemon": "^3.1.4",
+    "rate-limiter-flexible": "^5.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "backendcomparador": "file:",
+    "express": "^4.19.2",
+    "firebase": "^10.12.5",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
