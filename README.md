@@ -46,5 +46,5 @@ Las contribuciones son bienvenidas. Por favor, abre un issue para discutir los c
 Este proyecto está bajo la Licencia ISC.
 
 ## Contacto
-David Soto - [linkedin](www.linkedin.com/in/david-soto-068716220)
+David Soto - [linkedin](https://www.linkedin.com/in/david-soto-068716220)
 
