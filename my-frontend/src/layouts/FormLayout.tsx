@@ -14,7 +14,6 @@ import { FormData, useServices } from "../context/ServiceContext";
 import MyFormReCAPCHA from "../components/reCAPCHA/MyFormReCAPCHA";
 import ReCAPTCHA from "react-google-recaptcha";
 import Spinner from "../components/spinner/Spinner";
-import { useScrollRevealHeadline } from "../theme/scrollRevealConfig";
 
 const FormLayout: React.FC = () => {
   const {
@@ -66,9 +65,6 @@ const FormLayout: React.FC = () => {
     },
   };
 
-  //efectos de scrollReveal
-  useScrollRevealHeadline();
-
   return (
     <Box
       sx={{
@@ -88,7 +84,7 @@ const FormLayout: React.FC = () => {
             <SubTitlePrimary title="Formulario de Contacto" />
           </Box>
 
-          <Grid container spacing={2} className="reveal">
+          <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <Controller
                 name="name"
@@ -186,7 +182,6 @@ const FormLayout: React.FC = () => {
 
           <Box
             sx={{ marginTop: 5, justifyContent: "center", display: "flex" }}
-            className="reveal"
           >
             <MyFormReCAPCHA ref={recaptchaRef} siteKey={siteKey || ""} />
           </Box>

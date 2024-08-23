@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Accordion from "../components/faqs/Accordion";
 import { Faqs } from "../data/Faqs";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import SubTitlePrimary from "../components/titles/SubTitlePrimary";
-import { MarginTop, TitlePadding } from "../pages/measures";
-import { useScrollRevealHeadline } from "../theme/scrollRevealConfig";
-
+import { TitlePadding } from "../pages/measures";
 interface Props {
   // Define props here
 }
@@ -16,9 +14,6 @@ const FaqsLayout: React.FC<Faqs> = ({ titlePrimary, data }) => {
   const handleChange = (panel: number) => {
     setExpanded((prevExpanded) => (prevExpanded === panel ? false : panel));
   };
-
-  //efectos de scrollReveal
-  useScrollRevealHeadline();
 
   return (
     <Grid container justifyContent="center">
@@ -33,7 +28,6 @@ const FaqsLayout: React.FC<Faqs> = ({ titlePrimary, data }) => {
           paddingBottom={2}
           display="flex"
           justifyContent="center"
-          className="reveal"
         >
           <Accordion
             title={faq.title}

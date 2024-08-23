@@ -1,7 +1,7 @@
 import { Button, SvgIconTypeMap, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { useScrollRevealHeadline } from "../../theme/scrollRevealConfig";
+
 
 interface Props {
   label: string;
@@ -20,15 +20,12 @@ const ButtonPrimary: React.FC<Props> = ({
   icon,
   limitWidth = true,
 }) => {
-  //efectos de scrollReveal
-  useScrollRevealHeadline();
 
   return (
     <Button
       variant="contained"
       color="primary"
       onClick={onClic ? onClic : clic}
-      className="reveal"
       sx={{
         width: {
           xs: !limitWidth ? "auto" : 300,

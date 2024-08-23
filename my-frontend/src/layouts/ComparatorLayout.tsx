@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TextArea from "../components/textArea/TextArea";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import TitlePrimary from "../components/titles/TitlePrimary";
@@ -11,8 +11,6 @@ import ButtonSecondary from "../components/buttons/ButtonSecundary";
 import Spinner from "../components/spinner/Spinner";
 import { ComparadorData } from "../data/comparadorData";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useScrollRevealHeadline } from "../theme/scrollRevealConfig";
-// import { initScrollRevealHeadline } from "../theme/scrollRevealConfig";
 
 interface Props {
   comparadorData: ComparadorData;
@@ -46,8 +44,6 @@ const ComparatorLayout: React.FC<Props> = ({ comparadorData }) => {
     setButtonLikeActivite(false);
   };
 
-  useScrollRevealHeadline();
-
   return (
     <Grid container display="flex" justifyContent="center">
       <Grid xs={12} textAlign="center">
@@ -59,7 +55,7 @@ const ComparatorLayout: React.FC<Props> = ({ comparadorData }) => {
       <Grid xs={12} textAlign="center" marginTop={3} marginBottom={3}>
         <TextCommon text={comparadorData.subTitleSecundary} />
       </Grid>
-      <Grid xs={12} container columnSpacing={{xs: 0, sm: 0, md: 0}} justifyContent="center" className="reveal">
+      <Grid xs={12} container columnSpacing={{xs: 0, sm: 0, md: 0}} justifyContent="center">
         <Grid xs={6} md={5} padding={2}>
           <TextArea
             label={comparadorData.placeHolderTextAreaA}

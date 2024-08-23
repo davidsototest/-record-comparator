@@ -5,7 +5,6 @@ import SubTitlePrimary from "./titles/SubTitlePrimary";
 import { ReactComponent as LogoGato } from "../assets/cat-svgrepo-com.svg";
 import { useThemeContext } from "../context/ThemeContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useScrollRevealHeadline } from "../theme/scrollRevealConfig";
 
 interface Props {
   // Define props here
@@ -56,12 +55,8 @@ const Navbar: React.FC<Props> = (Props) => {
     }
   }, [isXs, isSm]);
 
-   //efectos de scrollReveal
-   useScrollRevealHeadline();
-
   return (
     <Box
-      className="header-one reveal"
       // className="reveal"
       sx={{
         background: theme.palette.secondary.dark,

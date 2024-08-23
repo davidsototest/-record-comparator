@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Testimonials } from "../data/testimonialsData";
 
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
@@ -6,8 +6,6 @@ import SubTitlePrimary from "../components/titles/SubTitlePrimary";
 import TextCommon from "../components/titles/TextCommon";
 import { MaxWidth, TitlePadding } from "../pages/measures";
 import SliderSmall from "../components/slider/SliderSmall";
-import {useScrollRevealHeadline} from "../theme/scrollRevealConfig"
-// import initScrollRevealHeadline from "../theme/scrollRevealConfig";
 
 interface PropsTestimoniasl {
   testimonials: Testimonials[];
@@ -16,8 +14,6 @@ interface PropsTestimoniasl {
 const TestimonialsLayout: React.FC<PropsTestimoniasl> = ({ testimonials }) => {
 
   const testimonio = "Estos son los testimonios de usuarios que han experimentado de primera mano la efectividad de nuestra aplicación. Aunque algunos usuarios han optado por no compartir su experiencia públicamente, los comentarios que hemos recibido reflejan la utilidad y el impacto positivo que la herramienta ha tenido en su trabajo diario. La aplicación ha facilitado la comparación precisa y rápida de registros entre archivos CSV y TXT, simplificando tareas que antes requerían mucho tiempo y esfuerzo. Estos testimonios son un reflejo del valor que aporta nuestra herramienta en la gestión y análisis de datos.";
-
-  useScrollRevealHeadline();
   
   return (
     <Grid container justifyContent="center">
@@ -27,7 +23,7 @@ const TestimonialsLayout: React.FC<PropsTestimoniasl> = ({ testimonials }) => {
       <Grid xs={11} md={6} display="flex" textAlign="center" justifyContent="center" paddingBottom={TitlePadding} marginTop={2}>
         <TextCommon text={testimonio}/>
       </Grid>
-      <Grid sx={{maxWidth: MaxWidth}} margin="auto" paddingBottom={8} className="reveal">
+      <Grid sx={{maxWidth: MaxWidth}} margin="auto" paddingBottom={8}>
         <SliderSmall testimonials={testimonials} />
       </Grid>
     </Grid>

@@ -1,8 +1,7 @@
-import { Card, CardMedia, CardContent, useTheme } from "@mui/material";
-import React, { useEffect } from "react";
+import { Card, CardMedia, CardContent } from "@mui/material";
+import React from "react";
 import SubTitleSecondary from "../titles/SubTitleSecondary";
 import TextCommon from "../titles/TextCommon";
-import { useScrollRevealHeadline } from "../../theme/scrollRevealConfig";
 
 
 interface Props {
@@ -12,10 +11,6 @@ interface Props {
 }
 
 const CardSmall: React.FC<Props> = ({ title, text, img }) => {
-  const theme = useTheme();
-
-  //efectos de scrollReveal
-  useScrollRevealHeadline();
 
   return (
     <Card
@@ -31,7 +26,6 @@ const CardSmall: React.FC<Props> = ({ title, text, img }) => {
         height="250px"
         image={img}
         alt={img}
-        className="widget"
         sx={{
           borderRadius: "15px",
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",

@@ -1,6 +1,4 @@
 import { Button, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { useScrollRevealHeadline } from "../../theme/scrollRevealConfig";
 
 interface Props {
   label: string;
@@ -8,11 +6,7 @@ interface Props {
   activate?: boolean;
 }
 
-const ButtonSecondary: React.FC<Props> = ({ label, clic, activate=true }) => {
-
-   //efectos de scrollReveal
-   useScrollRevealHeadline();
-  
+const ButtonSecondary: React.FC<Props> = ({ label, clic, activate=true }) => {  
   return (
     <Button
       variant="outlined"
@@ -20,7 +14,6 @@ const ButtonSecondary: React.FC<Props> = ({ label, clic, activate=true }) => {
       onClick={clic}
       sx={{ width: 300 }}
       disabled={!activate}
-      className="reveal"
     >
       <Typography style={{ fontWeight: 600, fontSize: "18px" }} variant="h6">
         {label}

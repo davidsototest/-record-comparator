@@ -1,7 +1,5 @@
 import { Button, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { useEffect } from "react";
-import { useScrollRevealHeadline } from "../../theme/scrollRevealConfig";
 
 interface Props {
   label: string;
@@ -23,9 +21,6 @@ const ButtonInputSecondary: React.FC<Props> = ({
     }
   };
 
-  //efectos de scrollReveal
-  useScrollRevealHeadline();
-
   return (
     <Button
       variant="outlined"
@@ -33,7 +28,6 @@ const ButtonInputSecondary: React.FC<Props> = ({
       startIcon={<CloudUploadIcon />}
       onClick={() => document.getElementById(label)?.click()} // abre el input al cli en el boton
       sx={{ width: 300 }}
-      className="reveal"
     >
       <Typography style={{ fontWeight: 600, fontSize: "13px" }} variant="h6">
         {label}
