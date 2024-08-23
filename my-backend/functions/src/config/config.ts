@@ -11,7 +11,3 @@ admin.initializeApp({
 
 // export const db = getFirestore();
 export const db: Firestore = getFirestore();
-
-export const config = {
-  port: process.env.PORT || 3000,
-};

@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useEffect } from "react";
-import { initScrollRevealHeadline } from "../../theme/scrollRevealConfig";
+import { useScrollRevealHeadline } from "../../theme/scrollRevealConfig";
 
 interface Props {
   label: string;
@@ -24,9 +24,7 @@ const ButtonInputSecondary: React.FC<Props> = ({
   };
 
   //efectos de scrollReveal
-  useEffect(() => {
-    initScrollRevealHeadline();
-  }, []);
+  useScrollRevealHeadline();
 
   return (
     <Button

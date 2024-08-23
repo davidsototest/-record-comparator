@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.config = exports.db = void 0;
+exports.db = void 0;
 const firestore_1 = require("firebase-admin/firestore");
 const serviceAccount = __importStar(require("../config/comparadorregistros-firebase-adminsdk-upp2p-44353e4dd8.json"));
 const admin = __importStar(require("firebase-admin"));
@@ -34,7 +34,4 @@ admin.initializeApp({
 });
 // export const db = getFirestore();
 exports.db = (0, firestore_1.getFirestore)();
-exports.config = {
-    port: process.env.PORT || 3000,
-};
 //# sourceMappingURL=config.js.map

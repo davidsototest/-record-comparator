@@ -4,20 +4,17 @@ import {
   Box,
   TextField,
   Grid,
-  Button,
-  Typography,
   SxProps,
   Theme,
   useTheme,
 } from "@mui/material";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import SubTitlePrimary from "../components/titles/SubTitlePrimary";
-import { MaxWidth } from "../pages/measures";
 import { FormData, useServices } from "../context/ServiceContext";
 import MyFormReCAPCHA from "../components/reCAPCHA/MyFormReCAPCHA";
 import ReCAPTCHA from "react-google-recaptcha";
 import Spinner from "../components/spinner/Spinner";
-import { initScrollRevealHeadline } from "../theme/scrollRevealConfig";
+import { useScrollRevealHeadline } from "../theme/scrollRevealConfig";
 
 const FormLayout: React.FC = () => {
   const {
@@ -33,18 +30,15 @@ const FormLayout: React.FC = () => {
   const theme = useTheme();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const recaptchaValue = recaptchaRef.current?.getValue();
+    const recaptchaValue = recaptchaRef.current?.getValue() || "";
 
-    if (!recaptchaValue) {
-      alert("Por favor completa el reCAPTCHA");
-      return;
-    }
-    try {
-      await sendFormContact({ ...data, recaptcha: recaptchaValue });
+    const response = await sendFormContact({
+      ...data,
+      recaptcha: recaptchaValue,
+    });
+    if (response) {
       reset(); // limpio el formulario
       recaptchaRef.current?.reset(); // limpio reCAPTCHA
-    } catch (error) {
-      alert("There was a problem with the submission: " + error);
     }
   };
 
@@ -72,21 +66,20 @@ const FormLayout: React.FC = () => {
     },
   };
 
-   //efectos de scrollReveal
-   useEffect(() => {
-    initScrollRevealHeadline();
-  }, []);
+  //efectos de scrollReveal
+  useScrollRevealHeadline();
 
   return (
-    <Box 
-      sx={{ 
+    <Box
+      sx={{
         maxWidth: {
           xs: "88%",
           sm: "70%",
-          md: "50%"
-        }, 
-        margin: "auto" 
-      }}>
+          md: "50%",
+        },
+        margin: "auto",
+      }}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box sx={{ padding: 2 }}>
           <Box
@@ -191,7 +184,10 @@ const FormLayout: React.FC = () => {
             </Grid>
           </Grid>
 
-          <Box sx={{ marginTop: 5, justifyContent: "center", display: "flex" }} className="reveal">
+          <Box
+            sx={{ marginTop: 5, justifyContent: "center", display: "flex" }}
+            className="reveal"
+          >
             <MyFormReCAPCHA ref={recaptchaRef} siteKey={siteKey || ""} />
           </Box>
           <Box

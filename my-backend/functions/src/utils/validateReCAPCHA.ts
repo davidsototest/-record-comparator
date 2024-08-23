@@ -1,7 +1,8 @@
 import axios from 'axios';
+import * as functions from 'firebase-functions';
 
 export const validateReCAPCHA = async (recaptcha: string): Promise<boolean> => {
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const secretKey = functions.config().recaptcha.secretkey;
 
   try {
     // Verifica el token de reCAPTCHA con la API de Google

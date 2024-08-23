@@ -4,7 +4,7 @@ import { Faqs } from "../data/Faqs";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import SubTitlePrimary from "../components/titles/SubTitlePrimary";
 import { MarginTop, TitlePadding } from "../pages/measures";
-import { initScrollRevealHeadline } from "../theme/scrollRevealConfig";
+import { useScrollRevealHeadline } from "../theme/scrollRevealConfig";
 
 interface Props {
   // Define props here
@@ -18,9 +18,7 @@ const FaqsLayout: React.FC<Faqs> = ({ titlePrimary, data }) => {
   };
 
   //efectos de scrollReveal
-  useEffect(() => {
-    initScrollRevealHeadline();
-  }, []);
+  useScrollRevealHeadline();
 
   return (
     <Grid container justifyContent="center">

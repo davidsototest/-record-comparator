@@ -8,7 +8,10 @@ import React, {
 import { comparator } from "../utils/comparator";
 import { validator } from "../utils/validator";
 import { incrementCounter, incrementLikes } from "../services/incrementCounter";
-import { likesObtained, processedDocuemnt } from "../services/processedDocument";
+import {
+  likesObtained,
+  processedDocuemnt,
+} from "../services/processedDocument";
 import { ToastiSuccess } from "../components/toasti/ToastiSuccess";
 import { ToastiError } from "../components/toasti/ToastiError";
 
@@ -49,15 +52,14 @@ const ComparatorContext = createContext<ComparatorContextType | undefined>(
 export const ComparatorProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-
   // INDICADORES
   // datos de la cantidad de archivos procesados y likes
   const [processedDocuments, setProcessedDocuments] = useState<number>(() => {
-    const storedValue = sessionStorage.getItem('processedDocuments');
+    const storedValue = sessionStorage.getItem("processedDocuments");
     return storedValue ? parseInt(storedValue, 10) || 0 : 0;
   });
   const [likesObtainedCound, setLikesObtainedCound] = useState<number>(() => {
-    const storedValueLikes = sessionStorage.getItem('likesObtained');
+    const storedValueLikes = sessionStorage.getItem("likesObtained");
     return storedValueLikes ? parseInt(storedValueLikes, 10) || 0 : 0;
   });
 
@@ -88,17 +90,21 @@ export const ComparatorProvider: React.FC<{ children: ReactNode }> = ({
   // Finalizo el proceso de comparacion?
   const [finishedProcess, setFinishedProcess] = useState(false);
 
-
-
   // ***************** COMPARADOR ************************
 
   // Validar si es archivo CSV o TXT y procesarlo
   const validatorFile = async (file: File, archivo: number) => {
     try {
-      const response = await validator(file, archivo, setDataArchivo1, setDataArchivo2, setIsLoading);
-      if(response){
+      const response = await validator(
+        file,
+        archivo,
+        setDataArchivo1,
+        setDataArchivo2,
+        setIsLoading
+      );
+      if (response) {
         ToastiSuccess("✅ Archivo Cargado Exitosamente");
-      }else {
+      } else {
         ToastiError("⛔ CSV y TXT son los formatos soportados");
       }
     } catch (error) {
@@ -137,8 +143,8 @@ export const ComparatorProvider: React.FC<{ children: ReactNode }> = ({
     setProgress(0);
     setBuffer(5);
     setProcessedDocuments(0);
-    sessionStorage.removeItem('processedDocuments');
-    sessionStorage.removeItem('likesObtained');
+    sessionStorage.removeItem("processedDocuments");
+    sessionStorage.removeItem("likesObtained");
     ToastiSuccess("👍 ¡Todo limpio para una nueva comparación!");
   };
 
@@ -148,27 +154,25 @@ export const ComparatorProvider: React.FC<{ children: ReactNode }> = ({
       await incrementLikes();
       ToastiSuccess("Gracias por tu LIKE 👍");
     } catch (error) {
-      console.log('Error al dejar like, error: ' + error);
+      console.log("Error al dejar like, error: " + error);
       ToastiError("🔴 Error en la entrega del like");
     }
-  }
+  };
 
   // ***************** INDICADORES ****************
   const getProcessedDocuments = async () => {
     const count = await processedDocuemnt();
     setProcessedDocuments(count);
-    sessionStorage.setItem('processedDocuments', count.toString());
+    sessionStorage.setItem("processedDocuments", count.toString());
   };
 
   const getLikesObtained = async () => {
     const likes = await likesObtained();
     setLikesObtainedCound(likes);
-    sessionStorage.setItem('likesObtained', likes.toString());
+    sessionStorage.setItem("likesObtained", likes.toString());
   };
 
-
   //  **************** USE EFFECTS ***************
-
   // activar y desactivar el boton de comparador y el limpiar todo
   useEffect(() => {
     if (dataArchivo1.length > 0 && dataArchivo2.length > 0) {
@@ -188,10 +192,14 @@ export const ComparatorProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     if (finishedProcess) {
       if (registerDataArchivo1.length === 0) {
-        setDataArchivo1(["Todos los registros del archivo 1, coinciden en el archivo 2..."]);
+        setDataArchivo1([
+          "Todos los registros del archivo 1, coinciden en el archivo 2...",
+        ]);
       }
       if (registerDataArchivo2.length === 0) {
-        setDataArchivo2(["Todos los registros del archivo 2, coinciden en el archivo 1..."]);
+        setDataArchivo2([
+          "Todos los registros del archivo 2, coinciden en el archivo 1...",
+        ]);
       }
     } else {
       setDataArchivo1(registerDataArchivo1);
@@ -201,10 +209,13 @@ export const ComparatorProvider: React.FC<{ children: ReactNode }> = ({
 
   // consultar por primera vez la cantidad de archivos procesados y likes
   useEffect(() => {
-    if (processedDocuments === 0 && !sessionStorage.getItem('processedDocuments')) {
+    if (
+      processedDocuments === 0 &&
+      !sessionStorage.getItem("processedDocuments")
+    ) {
       getProcessedDocuments();
     }
-    if (likesObtainedCound === 0 && !sessionStorage.getItem('likesObtained')) {
+    if (likesObtainedCound === 0 && !sessionStorage.getItem("likesObtained")) {
       getLikesObtained();
     }
   }, [processedDocuments, likesObtainedCound]);

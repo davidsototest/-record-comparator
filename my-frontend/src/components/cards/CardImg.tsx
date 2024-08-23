@@ -1,6 +1,6 @@
 import { Card, CardMedia } from "@mui/material";
 import React, { useEffect } from "react";
-import { initScrollRevealHeadline } from "../../theme/scrollRevealConfig";
+import { useScrollRevealHeadline } from "../../theme/scrollRevealConfig";
 
 interface Props {
     imgAutho: string;
@@ -9,9 +9,7 @@ interface Props {
 const CardImg: React.FC<Props> = ({imgAutho}) => {
 
    //efectos de scrollReveal
-   useEffect(() => {
-    initScrollRevealHeadline();
-  }, []);
+   useScrollRevealHeadline();
 
   return (
     <Card>

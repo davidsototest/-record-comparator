@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import { useEffect } from "react";
-import { initScrollRevealHeadline } from "../../theme/scrollRevealConfig";
+import { useScrollRevealHeadline } from "../../theme/scrollRevealConfig";
 
 interface Props {
   label: string;
@@ -11,9 +11,7 @@ interface Props {
 const ButtonSecondary: React.FC<Props> = ({ label, clic, activate=true }) => {
 
    //efectos de scrollReveal
-   useEffect(() => {
-    initScrollRevealHeadline();
-  }, []);
+   useScrollRevealHeadline();
   
   return (
     <Button

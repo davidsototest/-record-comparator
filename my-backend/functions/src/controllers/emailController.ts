@@ -1,7 +1,7 @@
 import { IForm } from "../model/form";
 import transporter from "../services/emailServices";
 
-export const sendContactEmail = async ({
+export const sendContactEmail = async ({ 
   name,
   email,
   phone,

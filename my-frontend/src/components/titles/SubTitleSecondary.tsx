@@ -1,6 +1,6 @@
 import { Typography, useTheme } from "@mui/material";
 import React, { useEffect } from "react";
-import { initScrollRevealHeadline } from "../../theme/scrollRevealConfig";
+import { useScrollRevealHeadline } from "../../theme/scrollRevealConfig";
 
 interface Props {
   title: string;
@@ -12,9 +12,7 @@ const SubTitleSecondary: React.FC<Props> = ({ title, color, styleScrollReveal = 
   const theme = useTheme();
 
    //efectos de scrollReveal
-   useEffect(() => {
-    initScrollRevealHeadline();
-  }, []);
+   useScrollRevealHeadline();
 
   return (
     <Typography

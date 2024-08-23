@@ -11,7 +11,8 @@ import ButtonSecondary from "../components/buttons/ButtonSecundary";
 import Spinner from "../components/spinner/Spinner";
 import { ComparadorData } from "../data/comparadorData";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { initScrollRevealHeadline } from "../theme/scrollRevealConfig";
+import { useScrollRevealHeadline } from "../theme/scrollRevealConfig";
+// import { initScrollRevealHeadline } from "../theme/scrollRevealConfig";
 
 interface Props {
   comparadorData: ComparadorData;
@@ -45,10 +46,7 @@ const ComparatorLayout: React.FC<Props> = ({ comparadorData }) => {
     setButtonLikeActivite(false);
   };
 
-   //efectos de scrollReveal
-   useEffect(() => {
-    initScrollRevealHeadline();
-  }, []);
+  useScrollRevealHeadline();
 
   return (
     <Grid container display="flex" justifyContent="center">

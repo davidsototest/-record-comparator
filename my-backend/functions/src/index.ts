@@ -1,21 +1,25 @@
 import express from "express";
 import { RateLimiterMemory } from "rate-limiter-flexible";
-import { Request } from 'express';
+import { Request } from "express";
 import indicatorsRoutes from "./routes/indicatorsRoutes";
-import formRoutes from './routes/formRoutes'
+import formRoutes from "./routes/formRoutes";
 // import faqsRoutes from "./routes/faqsRoutes";
 import incrementCounterRoutes from "./routes/incrementCounterRoutes";
 // import testimonialesRoutes from "./routes/testimonialsRoutes";
 import { errorHandler } from "./middlewares/errorHandler";
 import cors from "cors";
-import { https } from 'firebase-functions';
+import { https } from "firebase-functions";
 
 const app = express();
 
 const corsOptions = {
-  origin: ["http://localhost:3002", "https://grupo12-f7def.web.app"],
+  origin: [
+    "http://localhost:3002",
+    "https://comparadorregistros.web.app",
+    "https://comparadorregistros.firebaseapp.com",
+  ],
   methods: ["GET", "POST"],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ["Content-Type"],
 };
 
 app.use(cors(corsOptions));
@@ -23,19 +27,23 @@ app.use(express.json());
 
 // Configuración del rate limiter
 const opts = {
-  points: 6, // 6 petciones 
+  points: 6, // 6 petciones
   duration: 60, // en 60 segundos
 };
 
 const rateLimiter = new RateLimiterMemory(opts);
 
 // Middleware para aplicar el rate limiter
-const rateLimiterMiddleware = async (req: Request, res: express.Response, next: express.NextFunction) => {
+const rateLimiterMiddleware = async (
+  req: Request,
+  res: express.Response,
+  next: express.NextFunction
+) => {
   try {
-    await rateLimiter.consume(req.ip ?? 'unknown');
+    await rateLimiter.consume(req.ip ?? "unknown");
     next();
   } catch {
-    res.status(429).send('Peticiones limitadas');
+    res.status(429).send("Peticiones limitadas");
   }
 };
 

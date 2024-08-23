@@ -38,7 +38,7 @@ export const postFormController = async (
   };
 
   try {
-    const resultDB = await postForm(formData);
+    const resultDB = await postForm(formData); 
     const resultSend = await sendContactEmail({
       name,
       email,
@@ -55,7 +55,7 @@ export const postFormController = async (
     } else {
       res
         .status(500)
-        .json({ message: "Error al guardar o enviar el formulario" });
+        .json({ message: "Error al guardar o enviar el formulario", resultDB: resultDB, resultSend: resultSend  });
     }
   } catch (error) {
     res.status(500).json({ error: "Error interno del servidor" });

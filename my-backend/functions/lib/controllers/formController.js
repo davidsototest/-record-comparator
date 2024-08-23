@@ -57,7 +57,7 @@ const postFormController = (req, res) => __awaiter(void 0, void 0, void 0, funct
         else {
             res
                 .status(500)
-                .json({ message: "Error al guardar o enviar el formulario" });
+                .json({ message: "Error al guardar o enviar el formulario", resultDB: resultDB, resultSend: resultSend });
         }
     }
     catch (error) {
