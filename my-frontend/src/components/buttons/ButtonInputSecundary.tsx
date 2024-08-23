@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Fade } from "react-awesome-reveal";
 
@@ -22,6 +22,10 @@ const ButtonInputSecondary: React.FC<Props> = ({
     }
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const displayLabel = !isMobile ? `${label.slice(0, 20)}` : label;
+
   return (
     <Fade triggerOnce={true}>
       <Button
@@ -29,10 +33,10 @@ const ButtonInputSecondary: React.FC<Props> = ({
         color="primary"
         startIcon={<CloudUploadIcon />}
         onClick={() => document.getElementById(label)?.click()} // abre el input al cli en el boton
-        sx={{ width: 300 }}
+        sx={{ width: !isMobile ? 'auto' : 300, }}
       >
         <Typography style={{ fontWeight: 600, fontSize: "13px" }} variant="h6">
-          {label}
+          {displayLabel}
         </Typography>
         <input
           id={label}

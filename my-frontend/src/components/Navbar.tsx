@@ -102,7 +102,13 @@ const Navbar: React.FC<Props> = (Props) => {
                 <></>
               )}
             </div>
-            <Box justifyContent="end" sx={{ display: { md: "flex" } }}>
+            <Box
+              justifyContent="flex-end"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <ButtonPrimary
                 label={buttonText}
                 clic={handleNavigation}

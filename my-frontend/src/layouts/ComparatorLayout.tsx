@@ -52,7 +52,7 @@ const ComparatorLayout: React.FC<Props> = ({ comparadorData }) => {
       <Grid xs={11} sm={8} md={6} textAlign="center" marginTop={3}>
         <SubTitlePrimary title={comparadorData.subTitle} />
       </Grid>
-      <Grid xs={12} textAlign="center" marginTop={3} marginBottom={3}>
+      <Grid xs={11} md={8} textAlign="center" marginTop={3} marginBottom={3}>
         <TextCommon text={comparadorData.subTitleSecundary} />
       </Grid>
       <Grid xs={12} container columnSpacing={{xs: 0, sm: 0, md: 0}} justifyContent="center">
