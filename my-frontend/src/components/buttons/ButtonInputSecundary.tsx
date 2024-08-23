@@ -1,5 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { Fade } from "react-awesome-reveal";
 
 interface Props {
   label: string;
@@ -22,24 +23,26 @@ const ButtonInputSecondary: React.FC<Props> = ({
   };
 
   return (
-    <Button
-      variant="outlined"
-      color="primary"
-      startIcon={<CloudUploadIcon />}
-      onClick={() => document.getElementById(label)?.click()} // abre el input al cli en el boton
-      sx={{ width: 300 }}
-    >
-      <Typography style={{ fontWeight: 600, fontSize: "13px" }} variant="h6">
-        {label}
-      </Typography>
-      <input
-        id={label}
-        type="file"
-        accept=".csv, .txt"
-        style={{ display: "none" }}
-        onChange={handleFileChangeInput}
-      />
-    </Button>
+    <Fade triggerOnce={true}>
+      <Button
+        variant="outlined"
+        color="primary"
+        startIcon={<CloudUploadIcon />}
+        onClick={() => document.getElementById(label)?.click()} // abre el input al cli en el boton
+        sx={{ width: 300 }}
+      >
+        <Typography style={{ fontWeight: 600, fontSize: "13px" }} variant="h6">
+          {label}
+        </Typography>
+        <input
+          id={label}
+          type="file"
+          accept=".csv, .txt"
+          style={{ display: "none" }}
+          onChange={handleFileChangeInput}
+        />
+      </Button>
+    </Fade>
   );
 };
 

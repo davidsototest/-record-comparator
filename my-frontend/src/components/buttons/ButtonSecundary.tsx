@@ -1,4 +1,5 @@
 import { Button, Typography } from "@mui/material";
+import { Fade } from "react-awesome-reveal";
 
 interface Props {
   label: string;
@@ -6,19 +7,21 @@ interface Props {
   activate?: boolean;
 }
 
-const ButtonSecondary: React.FC<Props> = ({ label, clic, activate=true }) => {  
+const ButtonSecondary: React.FC<Props> = ({ label, clic, activate = true }) => {
   return (
-    <Button
-      variant="outlined"
-      color="primary"
-      onClick={clic}
-      sx={{ width: 300 }}
-      disabled={!activate}
-    >
-      <Typography style={{ fontWeight: 600, fontSize: "18px" }} variant="h6">
-        {label}
-      </Typography>
-    </Button>
+    <Fade triggerOnce={true}>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={clic}
+        sx={{ width: 300 }}
+        disabled={!activate}
+      >
+        <Typography style={{ fontWeight: 600, fontSize: "18px" }} variant="h6">
+          {label}
+        </Typography>
+      </Button>
+    </Fade>
   );
 };
 

@@ -1,19 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import {
-  Box,
-  TextField,
-  Grid,
-  SxProps,
-  Theme,
-  useTheme,
-} from "@mui/material";
+import { Box, TextField, Grid, SxProps, Theme, useTheme } from "@mui/material";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import SubTitlePrimary from "../components/titles/SubTitlePrimary";
 import { FormData, useServices } from "../context/ServiceContext";
 import MyFormReCAPCHA from "../components/reCAPCHA/MyFormReCAPCHA";
 import ReCAPTCHA from "react-google-recaptcha";
 import Spinner from "../components/spinner/Spinner";
+import { Fade } from "react-awesome-reveal";
 
 const FormLayout: React.FC = () => {
   const {
@@ -76,131 +70,138 @@ const FormLayout: React.FC = () => {
         margin: "auto",
       }}
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Box sx={{ padding: 2 }}>
-          <Box
-            sx={{ marginBottom: 5, justifyContent: "center", display: "flex" }}
-          >
-            <SubTitlePrimary title="Formulario de Contacto" />
+      <Fade triggerOnce={true}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box sx={{ padding: 2 }}>
+            <Box
+              sx={{
+                marginBottom: 5,
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <SubTitlePrimary title="Formulario de Contacto" />
+            </Box>
+
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <Controller
+                  name="name"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: "Nombre es requerido" }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Nombre"
+                      variant="outlined"
+                      fullWidth
+                      error={!!errors.name}
+                      helperText={errors.name ? errors.name.message : ""}
+                      sx={textFieldStyles}
+                    />
+                  )}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Controller
+                  name="phone"
+                  control={control}
+                  defaultValue=""
+                  rules={{
+                    required: "Teléfono es requerido",
+                    pattern: {
+                      value: /^[0-9]{10}$/,
+                      message: "Minimo 10 digitos",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Teléfono "
+                      variant="outlined"
+                      fullWidth
+                      error={!!errors.phone}
+                      helperText={errors.phone ? errors.phone.message : ""}
+                      sx={textFieldStyles}
+                    />
+                  )}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <Controller
+                  name="email"
+                  control={control}
+                  defaultValue=""
+                  rules={{
+                    required: "Email es requerido",
+                    pattern: {
+                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                      message: "Por favor ingrese un email valido",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Email"
+                      variant="outlined"
+                      fullWidth
+                      error={!!errors.email}
+                      helperText={errors.email ? errors.email.message : ""}
+                      sx={textFieldStyles}
+                    />
+                  )}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <Controller
+                  name="message"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: "Mensaje es requerido" }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Mensaje"
+                      variant="outlined"
+                      fullWidth
+                      multiline
+                      rows={5}
+                      error={!!errors.message}
+                      helperText={errors.message ? errors.message.message : ""}
+                      sx={textFieldStyles}
+                    />
+                  )}
+                />
+              </Grid>
+            </Grid>
+
+            <Box
+              sx={{ marginTop: 5, justifyContent: "center", display: "flex" }}
+            >
+              <MyFormReCAPCHA ref={recaptchaRef} siteKey={siteKey || ""} />
+            </Box>
+            <Box
+              sx={{
+                marginTop: 4,
+                marginBottom: 10,
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <ButtonPrimary
+                label="Enviar Formulario"
+                onClic={handleSubmit(onSubmit)}
+                clic={() => {}}
+              />
+            </Box>
           </Box>
+        </form>
+      </Fade>
 
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="name"
-                control={control}
-                defaultValue=""
-                rules={{ required: "Nombre es requerido" }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Nombre"
-                    variant="outlined"
-                    fullWidth
-                    error={!!errors.name}
-                    helperText={errors.name ? errors.name.message : ""}
-                    sx={textFieldStyles}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="phone"
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Teléfono es requerido",
-                  pattern: {
-                    value: /^[0-9]{10}$/,
-                    message: "Minimo 10 digitos",
-                  },
-                }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Teléfono "
-                    variant="outlined"
-                    fullWidth
-                    error={!!errors.phone}
-                    helperText={errors.phone ? errors.phone.message : ""}
-                    sx={textFieldStyles}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <Controller
-                name="email"
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Email es requerido",
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "Por favor ingrese un email valido",
-                  },
-                }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Email"
-                    variant="outlined"
-                    fullWidth
-                    error={!!errors.email}
-                    helperText={errors.email ? errors.email.message : ""}
-                    sx={textFieldStyles}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <Controller
-                name="message"
-                control={control}
-                defaultValue=""
-                rules={{ required: "Mensaje es requerido" }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Mensaje"
-                    variant="outlined"
-                    fullWidth
-                    multiline
-                    rows={5}
-                    error={!!errors.message}
-                    helperText={errors.message ? errors.message.message : ""}
-                    sx={textFieldStyles}
-                  />
-                )}
-              />
-            </Grid>
-          </Grid>
-
-          <Box
-            sx={{ marginTop: 5, justifyContent: "center", display: "flex" }}
-          >
-            <MyFormReCAPCHA ref={recaptchaRef} siteKey={siteKey || ""} />
-          </Box>
-          <Box
-            sx={{
-              marginTop: 4,
-              marginBottom: 10,
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            <ButtonPrimary
-              label="Enviar Formulario"
-              onClic={handleSubmit(onSubmit)}
-              clic={() => {}}
-            />
-          </Box>
-        </Box>
-      </form>
       {isLoading ? (
         <Spinner label="Enviando..." buffer={0} progress={0} />
       ) : (

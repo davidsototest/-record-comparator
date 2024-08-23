@@ -1,6 +1,6 @@
 import React from "react";
 import { Testimonials } from "../data/testimonialsData";
-
+import { Fade } from "react-awesome-reveal";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import SubTitlePrimary from "../components/titles/SubTitlePrimary";
 import TextCommon from "../components/titles/TextCommon";
@@ -12,26 +12,38 @@ interface PropsTestimoniasl {
 }
 
 const TestimonialsLayout: React.FC<PropsTestimoniasl> = ({ testimonials }) => {
+  const testimonio =
+    "Estos son los testimonios de usuarios que han experimentado de primera mano la efectividad de nuestra aplicación. Aunque algunos usuarios han optado por no compartir su experiencia públicamente, los comentarios que hemos recibido reflejan la utilidad y el impacto positivo que la herramienta ha tenido en su trabajo diario. La aplicación ha facilitado la comparación precisa y rápida de registros entre archivos CSV y TXT, simplificando tareas que antes requerían mucho tiempo y esfuerzo. Estos testimonios son un reflejo del valor que aporta nuestra herramienta en la gestión y análisis de datos.";
 
-  const testimonio = "Estos son los testimonios de usuarios que han experimentado de primera mano la efectividad de nuestra aplicación. Aunque algunos usuarios han optado por no compartir su experiencia públicamente, los comentarios que hemos recibido reflejan la utilidad y el impacto positivo que la herramienta ha tenido en su trabajo diario. La aplicación ha facilitado la comparación precisa y rápida de registros entre archivos CSV y TXT, simplificando tareas que antes requerían mucho tiempo y esfuerzo. Estos testimonios son un reflejo del valor que aporta nuestra herramienta en la gestión y análisis de datos.";
-  
   return (
-    <Grid container justifyContent="center">
-      <Grid xs={12} display="flex" textAlign="center" justifyContent="center" paddingTop={TitlePadding}>
-        <SubTitlePrimary title={'Testimonios'}/>
+    <Fade triggerOnce={true}>
+      <Grid container justifyContent="center">
+        <Grid
+          xs={12}
+          display="flex"
+          textAlign="center"
+          justifyContent="center"
+          paddingTop={TitlePadding}
+        >
+          <SubTitlePrimary title={"Testimonios"} />
+        </Grid>
+        <Grid
+          xs={11}
+          md={6}
+          display="flex"
+          textAlign="center"
+          justifyContent="center"
+          paddingBottom={TitlePadding}
+          marginTop={2}
+        >
+          <TextCommon text={testimonio} />
+        </Grid>
+        <Grid sx={{ maxWidth: MaxWidth }} margin="auto" paddingBottom={8}>
+          <SliderSmall testimonials={testimonials} />
+        </Grid>
       </Grid>
-      <Grid xs={11} md={6} display="flex" textAlign="center" justifyContent="center" paddingBottom={TitlePadding} marginTop={2}>
-        <TextCommon text={testimonio}/>
-      </Grid>
-      <Grid sx={{maxWidth: MaxWidth}} margin="auto" paddingBottom={8}>
-        <SliderSmall testimonials={testimonials} />
-      </Grid>
-    </Grid>
+    </Fade>
   );
 };
 
 export default TestimonialsLayout;
-function initScrollRevealHeadline() {
-  throw new Error("Function not implemented.");
-}
-

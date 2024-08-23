@@ -5,7 +5,7 @@ import SubTitlePrimary from "./titles/SubTitlePrimary";
 import { ReactComponent as LogoGato } from "../assets/cat-svgrepo-com.svg";
 import { useThemeContext } from "../context/ThemeContext";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { Fade } from "react-awesome-reveal";
 interface Props {
   // Define props here
 }
@@ -57,62 +57,68 @@ const Navbar: React.FC<Props> = (Props) => {
 
   return (
     <Box
-      // className="reveal"
       sx={{
         background: theme.palette.secondary.dark,
         width: { xs: "95%", sm: "90%", md: "80%" },
       }}
+      className="header-one"
     >
-      <Toolbar
-        disableGutters
-        sx={{
-          marginLeft: {
-            xs: "10px",
-            sm: "35px",
-          },
-          marginRight: {
-            xs: "10px",
-            sm: "35px",
-          },
-        }}
-      >
-        <Box
+      <Fade triggerOnce={true}>
+        <Toolbar
+          disableGutters
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "100%",
+            marginLeft: {
+              xs: "10px",
+              sm: "35px",
+            },
+            marginRight: {
+              xs: "10px",
+              sm: "35px",
+            },
           }}
         >
-          <div style={{ display: "flex" }}>
-            <LogoGato
-              style={{
-                width: 55,
-                height: 50,
-                marginRight: 15,
-                fill: theme.palette.primary.main,
-              }}
-            />
-            {!isMobile ? (
-              <Box sx={{ marginTop: 0.5 }}>
-                <SubTitlePrimary title={"Comparador"} />
-              </Box>
-            ) : (
-              <></>
-            )}
-          </div>
-          <Box justifyContent="end" sx={{ display: { md: "flex" } }}>
-            <ButtonPrimary label={buttonText} clic={handleNavigation} limitWidth={false}/>
-            <Button
-              variant="text"
-              onClick={toggleTheme}
-              sx={{ marginLeft: { xs: "5px", md: "35px" } }}
-            >
-              <IconModeComponent style={{ fontSize: 40 }} />
-            </Button>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <div style={{ display: "flex" }}>
+              <LogoGato
+                style={{
+                  width: 55,
+                  height: 50,
+                  marginRight: 15,
+                  fill: theme.palette.primary.main,
+                }}
+              />
+              {!isMobile ? (
+                <Box sx={{ marginTop: 0.5 }}>
+                  <SubTitlePrimary title={"Comparador"} />
+                </Box>
+              ) : (
+                <></>
+              )}
+            </div>
+            <Box justifyContent="end" sx={{ display: { md: "flex" } }}>
+              <ButtonPrimary
+                label={buttonText}
+                clic={handleNavigation}
+                limitWidth={false}
+              />
+              <Button
+                variant="text"
+                onClick={toggleTheme}
+                sx={{ marginLeft: { xs: "5px", md: "35px" } }}
+              >
+                <IconModeComponent style={{ fontSize: 40 }} />
+              </Button>
+            </Box>
           </Box>
-        </Box>
-      </Toolbar>
+        </Toolbar>
+      </Fade>
     </Box>
   );
 };

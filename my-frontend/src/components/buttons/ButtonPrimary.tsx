@@ -1,7 +1,7 @@
 import { Button, SvgIconTypeMap, Typography } from "@mui/material";
 import React from "react";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-
+import { Fade } from "react-awesome-reveal";
 
 interface Props {
   label: string;
@@ -20,25 +20,26 @@ const ButtonPrimary: React.FC<Props> = ({
   icon,
   limitWidth = true,
 }) => {
-
   return (
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={onClic ? onClic : clic}
-      sx={{
-        width: {
-          xs: !limitWidth ? "auto" : 300,
-          sm: 300,
-        },
-      }}
-      disabled={!activate}
-      endIcon={icon ? React.createElement(icon) : null}
-    >
-      <Typography style={{ fontWeight: 500, fontSize: "18px" }} variant="h6">
-        {label}
-      </Typography>
-    </Button>
+    <Fade triggerOnce={true}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={onClic ? onClic : clic}
+        sx={{
+          width: {
+            xs: !limitWidth ? "auto" : 300,
+            sm: 300,
+          },
+        }}
+        disabled={!activate}
+        endIcon={icon ? React.createElement(icon) : null}
+      >
+        <Typography style={{ fontWeight: 500, fontSize: "18px" }} variant="h6">
+          {label}
+        </Typography>
+      </Button>
+    </Fade>
   );
 };
 

@@ -1,17 +1,25 @@
 import React from "react";
-import { useComparator } from "../../context/ComparatorContext";
 import ButtonInputSecondary from "../buttons/ButtonInputSecundary";
-
+import { Fade } from "react-awesome-reveal";
 interface Props {
   label: string;
   handleFileChange: (file: File, archivo: number) => void;
-  archivo: number
+  archivo: number;
 }
 
-const InputComponent: React.FC<Props> = ({ label, handleFileChange, archivo }) => {
-
+const InputComponent: React.FC<Props> = ({
+  label,
+  handleFileChange,
+  archivo,
+}) => {
   return (
-  <ButtonInputSecondary label={label} handleFileChange={handleFileChange} archivo={archivo} />
+    <Fade triggerOnce={true}>
+      <ButtonInputSecondary
+        label={label}
+        handleFileChange={handleFileChange}
+        archivo={archivo}
+      />
+    </Fade>
   );
 };
 
